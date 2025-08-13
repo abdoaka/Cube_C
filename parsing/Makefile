@@ -1,26 +1,30 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = libparsing.a
-AR = ar rcs
+NAME = parser
 
-INCLUDES = -I../includes -Iincludes
-HEADERS = ../includes/cub3rd.h includes/parsing.h
+SRC = cube3d_parsing.c \
+      getnextline/get_next_line.c \
+      utils1.c \
+	  utils2.c \
+	  utils3.c \
+	  utils4.c \
+      helpers.c \
+      map.c\
+	  map_utils.c
 
-SRCS = src/parse_colors.c src/parse_file.c src/parse_map.c \
-       src/parse_textures.c src/parse_utils.c
 
-OBJS = ${SRCS:.c=.o}
+OBJ = $(SRC:.c=.o)
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -Igetnextline -I.
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
-
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
@@ -28,3 +32,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
