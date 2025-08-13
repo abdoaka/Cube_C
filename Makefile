@@ -13,25 +13,43 @@ else ifeq ($(UNAME), Darwin)
     MLX_FLAGS = -lglfw -L/usr/local/lib
 endif
 
-# Source files
+# Source files and headers
 SRCS = src/main.c src/game/input.c src/game/movement.c src/game/camera.c \
        src/utils/cleanup.c src/utils/error.c src/utils/math_utils.c
 
 OBJS = ${SRCS:.c=.o}
+HEADERS = includes/cub3rd.h
 
-# Required rules
-all: libmlx modules $(NAME)
+# Library files
+MLX_LIB = mlx/build/libmlx42.a
+PARSING_LIB = parsing/libparsing.a
+RENDERING_LIB = rendering/librendering.a
+TEXTURES_LIB = textures/libtextures.a
 
-$(NAME): $(OBJS) libmlx modules
-	$(CC) $(OBJS) parsing/libparsing.a rendering/librendering.a \
-	textures/libtextures.a mlx/build/libmlx42.a $(MLX_FLAGS) -o $(NAME)
+# Main rule
+all: $(NAME)
 
-modules:
+# Link everything - only when dependencies change
+$(NAME): $(OBJS) $(MLX_LIB) $(PARSING_LIB) $(RENDERING_LIB) $(TEXTURES_LIB)
+	$(CC) $(OBJS) $(PARSING_LIB) $(RENDERING_LIB) \
+	$(TEXTURES_LIB) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
+
+# Object files with header dependencies
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Build libraries only when needed
+$(PARSING_LIB): parsing/src/*.c parsing/includes/*.h $(HEADERS)
 	make -C parsing
+
+$(RENDERING_LIB): rendering/src/*.c rendering/includes/*.h $(HEADERS)
 	make -C rendering
+
+$(TEXTURES_LIB): textures/src/*.c textures/includes/*.h $(HEADERS)
 	make -C textures
 
-libmlx:
+# Build MLX42 only if not exists
+$(MLX_LIB):
 	cmake mlx -B mlx/build && make -C mlx/build -j4
 
 clean:
@@ -42,7 +60,11 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	make -C parsing fclean
+	make -C rendering fclean
+	make -C textures fclean
+	rm -rf mlx/build
 
 re: fclean all
 
-.PHONY: all clean fclean re libmlx modules
+.PHONY: all clean fclean re

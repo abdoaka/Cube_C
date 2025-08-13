@@ -1,0 +1,17 @@
+# Object files
+*.o
+
+# Executable
+cub3d
+
+# Library files
+*.a
+
+# MLX42 build directory
+mlx/build/
+
+# Other common files to ignore
+.DS_Store
+*.swp
+*.swo
+*~
