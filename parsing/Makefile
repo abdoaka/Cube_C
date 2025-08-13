@@ -1,22 +1,19 @@
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-NAME = parser
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror -Igetnextline -I.
+NAME    = parser
 
-SRC = cube3d_parsing.c \
-      getnextline/get_next_line.c \
-      utils1.c \
-	  utils2.c \
-	  utils3.c \
-	  utils4.c \
-      helpers.c \
-      map.c\
-	  map_utils.c
+SRC     = cube3d_parsing.c \
+          getnextline/get_next_line.c \
+          getnextline/get_next_line_utils.c \
+          utils1.c \
+          utils2.c \
+          utils3.c \
+          utils4.c \
+          helpers.c \
+          map.c \
+          map_utils.c
 
-
-OBJ = $(SRC:.c=.o)
-
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -Igetnextline -I.
+OBJ     = $(SRC:.c=.o)
 
 all: $(NAME)
 
@@ -32,4 +29,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
