@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "cube.h" 
-#include "get_next_line.h"
+#include "getnextline/get_next_line.h"
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 5
