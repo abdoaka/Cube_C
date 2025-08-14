@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 08:38:05 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/13 09:22:42 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/08/14 01:20:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	check_cell(char **map, int y, int x, int h, int w)
+void	check_cell(t_map_check data)
 {
-	if (y == 0 || x == 0 || y == h - 1 || x == w - 1)
+	if (data.y == 0 || data.x == 0
+		|| data.y == data.h - 1 || data.x == data.w - 1)
 		error("Map not closed");
-	if (map[y - 1][x] == ' ' || map[y + 1][x] == ' '
-		|| map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
+	if (data.map[data.y - 1][data.x] == ' '
+		|| data.map[data.y + 1][data.x] == ' '
+		|| data.map[data.y][data.x - 1] == ' '
+		|| data.map[data.y][data.x + 1] == ' ')
 		error("Map not closed properly");
 }
+
 int	get_max_width(char **lines, int height)
 {
 	int	i;
@@ -38,7 +42,6 @@ int	get_max_width(char **lines, int height)
 	return (max);
 }
 
-/* Fill a single line with padding */
 char	*pad_line(char *line, int width)
 {
 	int		len;
@@ -63,13 +66,12 @@ char	*pad_line(char *line, int width)
 
 int	is_valid_map_char(char c)
 {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W' ||
-		c == '1' || c == '0' || c == ' ')
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == '1' || c == '0' || c == ' ')
 		return (1);
 	return (0);
 }
 
-/* Return 1 if c is a player character, 0 otherwise */
 int	is_player_char(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')

@@ -1,20 +1,28 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Igetnextline -I.
-NAME = libparsing.a           # Changed to library
-AR = ar rcs                   # Added archiver
+NAME = parser
 
 SRC = cube3d_parsing.c \
-	getnextline/get_next_line.c \
-	getnextline/get_next_line_utils.c \
-	utils1.c utils2.c utils3.c utils4.c \
-	helpers.c map.c map_utils.c
+      getnextline/get_next_line.c \
+      utils1.c \
+	  utils2.c \
+	  utils3.c \
+	  utils4.c \
+      helpers.c \
+      map.c\
+	  map_utils.c\
+	  parse_file.c \
+	  parse_config.c\
+	  player_utils.c \
+	  main.c
+
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)

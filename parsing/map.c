@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 07:22:11 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/13 09:23:07 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/08/14 01:21:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-/* Save one line of map, growing map_lines dynamically */
 void	save_map_line(t_config *cfg, char *line)
 {
 	int		i;
@@ -36,7 +35,6 @@ void	save_map_line(t_config *cfg, char *line)
 	cfg->map_height++;
 }
 
-/* Pad map lines so all have equal width */
 char	**pad_map(char **lines, int height, int *width_out)
 {
 	char	**padded;
@@ -85,12 +83,12 @@ void	validate_map_characters(t_config *cfg)
 		error("Map must have exactly one player");
 }
 
-/* Check if map is properly closed */
 void	check_closed_map(char **map, int h, int w)
 {
-	int		y;
-	int		x;
-	char	c;
+	int			y;
+	int			x;
+	char		c;
+	t_map_check	data;
 
 	y = 0;
 	while (y < h)
@@ -100,7 +98,14 @@ void	check_closed_map(char **map, int h, int w)
 		{
 			c = map[y][x];
 			if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				check_cell(map, y, x, h, w);
+			{
+				data.map = map;
+				data.y = y;
+				data.x = x;
+				data.h = h;
+				data.w = w;
+				check_cell(data);
+			}
 			x++;
 		}
 		y++;

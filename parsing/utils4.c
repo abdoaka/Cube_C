@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 07:55:14 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/13 08:52:12 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/08/14 03:03:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,9 @@ char	*ft_strchr(const char *str, int c)
 		}
 		i++;
 	}
-	if ((unsigned char)c == '\0') 
+	if ((unsigned char)c == '\0')
 	{
 		return ((char *)&str[i]);
 	}
 	return (NULL);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 20:58:07 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/13 07:57:28 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/08/14 03:03:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static char	**free_s(char **split, size_t j)
 
 static char	**fill_words(char **split, char const *s, char c, size_t word_count)
 {
-	size_t	i; 
-	size_t	j; 
+	size_t	i;
+	size_t	j;
 	size_t	word_start;
 
 	j = 0;
