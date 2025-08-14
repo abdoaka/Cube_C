@@ -79,8 +79,8 @@ void	parse_config_line(char *line, t_config *cfg)
 	char	*value;
 
 	parts = ft_split(str_trim(line), ' ');
-	if (!parts || !parts[0] || !parts[1])
-		error("Invalid config line");
+	if (!parts || !parts[0] || !parts[1] || parts[2])
+		error("Invalid config line"); // reject extra tokens
 	value = str_trim(parts[1]);
 	if (!ft_strncmp(parts[0], "NO", 3) || !ft_strncmp(parts[0], "SO", 3)
 		|| !ft_strncmp(parts[0], "WE", 3) || !ft_strncmp(parts[0], "EA", 3))
