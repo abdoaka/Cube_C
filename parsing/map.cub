@@ -1,4 +1,4 @@
-NO  1 ./textures/north.xpm
+NO ./textures/north.xpm
 SO ./textures/south.xpm
 EA ./textures/east.xpm
 WE ./textures/west.xpm

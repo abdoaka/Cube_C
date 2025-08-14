@@ -2,8 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Igetnextline -I.
 NAME = parser
 
-SRC = cube3d_parsing.c \
-      getnextline/get_next_line.c \
+SRC = getnextline/get_next_line.c \
       utils1.c \
 	  utils2.c \
 	  utils3.c \
