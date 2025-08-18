@@ -3,7 +3,7 @@ UNAME := $(shell uname)
 
 # 42 Norm requirements
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./includes
+CFLAGS = -Wall -Wextra -Werror -I./includes -I./parsing
 NAME = cub3d
 
 # OS-specific linking
@@ -14,7 +14,7 @@ else ifeq ($(UNAME), Darwin)
 endif
 
 # Source files and headers
-SRCS = src/main.c src/game/input.c src/game/movement.c src/game/camera.c \
+SRCS = src/main.c src/game/input.c src/game/init.c src/game/movement.c src/game/camera.c \
        src/utils/cleanup.c src/utils/error.c src/utils/math_utils.c
 
 OBJS = ${SRCS:.c=.o}
@@ -29,7 +29,7 @@ TEXTURES_LIB = textures/libtextures.a
 # Main rule
 all: $(NAME)
 
-# Link everything - only when dependencies change
+# Link everything
 $(NAME): $(OBJS) $(MLX_LIB) $(PARSING_LIB) $(RENDERING_LIB) $(TEXTURES_LIB)
 	$(CC) $(OBJS) $(PARSING_LIB) $(RENDERING_LIB) \
 	$(TEXTURES_LIB) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
@@ -38,14 +38,14 @@ $(NAME): $(OBJS) $(MLX_LIB) $(PARSING_LIB) $(RENDERING_LIB) $(TEXTURES_LIB)
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Build libraries only when needed
-$(PARSING_LIB): parsing/src/*.c parsing/includes/*.h $(HEADERS)
+# Build libraries - no file dependencies, just force rebuild when called
+$(PARSING_LIB):
 	make -C parsing
 
-$(RENDERING_LIB): rendering/src/*.c rendering/includes/*.h $(HEADERS)
+$(RENDERING_LIB):
 	make -C rendering
 
-$(TEXTURES_LIB): textures/src/*.c textures/includes/*.h $(HEADERS)
+$(TEXTURES_LIB):
 	make -C textures
 
 # Build MLX42 only if not exists

@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-void	error(const char *msg)
+void	error(const char *msg)  
 {
 	write(2, "Error\n", 6);
 	while (*msg)

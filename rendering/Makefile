@@ -6,8 +6,7 @@ AR = ar rcs
 INCLUDES = -I../includes -Iincludes
 HEADERS = ../includes/cub3rd.h includes/rendering.h
 
-SRCS = src/draw.c src/raycasting.c src/render.c
-
+SRCS = src/draw.c src/raycasting.c src/render.c src/render_minimap.c src/render_3d.c
 OBJS = ${SRCS:.c=.o}
 
 all: $(NAME)

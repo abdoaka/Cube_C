@@ -1,0 +1,77 @@
+Mandatory Modules (cub3D Correction)
+
+Executable name
+
+Must compile with make
+
+Executable must be named cub3D
+
+Configuration file
+
+Must allow configuration of:
+
+North texture (NO)
+
+South texture (SO)
+
+East texture (EA)
+
+West texture (WE)
+
+Floor color (F)
+
+Ceiling color (C)
+
+Map layout
+
+Must handle errors (bad keys, duplicates, wrong paths, wrong extension)
+
+Technical elements of the display
+
+Window opens correctly
+
+Maze rendered correctly
+
+Display persists after minimize/maximize
+
+User basic events
+
+Close with red cross
+
+Close with ESC (or Q)
+
+Player reacts to movement keys (WASD / ZQSD)
+
+Movements
+
+Player spawns in correct orientation (N, S, E, W)
+
+Rotation works (left/right arrow keys)
+
+Forward/backward works (W/S or Z/S)
+
+Strafe left/right works (A/D or Q/D)
+
+Movement smooth/playable
+
+Walls
+
+Correct textures depending on orientation (N, S, E, W)
+
+Modifying path changes texture (error if invalid)
+
+Floor & ceiling colors handled correctly
+
+Error management
+
+Handles random arguments safely
+
+No memory leaks
+
+Robust against invalid input / keyboard spamming
+
+Map modifications handled correctly (valid vs invalid)
+
+
+
+
