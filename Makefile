@@ -4,7 +4,7 @@ UNAME := $(shell uname)
 # 42 Norm requirements
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./includes -I./parsing
-NAME = cub3d
+NAME = cub3D
 
 # OS-specific linking
 ifeq ($(UNAME), Linux)

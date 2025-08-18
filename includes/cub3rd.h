@@ -28,6 +28,7 @@
 # define KEY_A MLX_KEY_A  
 # define KEY_S MLX_KEY_S
 # define KEY_D MLX_KEY_D
+# define KEY_Q MLX_KEY_Q
 # define KEY_LEFT MLX_KEY_LEFT
 # define KEY_RIGHT MLX_KEY_RIGHT
 # define KEY_ESC MLX_KEY_ESCAPE

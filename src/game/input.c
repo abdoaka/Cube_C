@@ -97,7 +97,7 @@ void	handle_input(void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	if (mlx_is_key_down(game->mlx, KEY_ESC))
+	if (mlx_is_key_down(game->mlx, KEY_ESC) || mlx_is_key_down(game->mlx, KEY_Q))
 		mlx_close_window(game->mlx);
 	
 	move_player(game);
