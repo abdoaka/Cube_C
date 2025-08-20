@@ -1,5 +1,6 @@
 #include "../../includes/cub3rd.h"
 #include "../includes/rendering.h"
+#include "../../textures/includes/textures.h"
 
 void	render_3d_view(t_game *game)
 {
@@ -35,66 +36,68 @@ void	render_3d_view(t_game *game)
 	}
 }
 
-void	draw_wall_strip(t_game *game, double ray_angle, int screen_x, int strip_width, double projection_distance)
-{
-	t_ray	ray;
-	double	corrected_distance;
-	double	wall_height;
-	int		wall_top;
-	int		wall_bottom;
-	uint32_t wall_color;
-	int		x;
-	int		y;
+// Replace your draw_wall_strip function in render_3d.c with this:
 
-	// Cast the ray
+void	draw_wall_strip(t_game *game, double ray_angle, int screen_x, 
+	int strip_width, double projection_distance)
+{
+	t_ray		ray;
+	double		corrected_distance;
+	double		wall_height;
+	int			wall_top;
+	int			wall_bottom;
+
 	ray.angle = ray_angle;
 	cast_single_ray(game, &ray);
-	
-	// Apply fisheye correction
 	corrected_distance = ray.distance * cos(ray_angle - game->player.rotation);
-	
-	// Calculate wall height (like your JS wallstripheight)
-	wall_height = (1.0 / corrected_distance) * projection_distance;  // Using 1.0 as tile_size
-	
-	// Calculate wall boundaries on screen
+	wall_height = (1.0 / corrected_distance) * projection_distance;
 	wall_top = (WINDOW_HEIGHT - (int)wall_height) / 2;
 	wall_bottom = (WINDOW_HEIGHT + (int)wall_height) / 2;
-	
-	// Choose wall color based on direction
-	if (ray.hit_vertical)
-		wall_color = 0xFF0000FF;  // Red for vertical walls (E/W)
-	else
-		wall_color = 0x0000FFFF;  // Blue for horizontal walls (N/S)
-	
-	// Draw the wall strip
+	draw_textured_wall_strip(game, &ray, screen_x, strip_width, wall_top, 
+		wall_bottom);
+}
+
+void	draw_textured_wall_strip(t_game *game, t_ray *ray, int screen_x, 
+	int strip_width, int wall_top, int wall_bottom)
+{
+	int			x;
+	int			y;
+	uint32_t	pixel_color;
+
 	x = screen_x;
 	while (x < screen_x + strip_width && x < WINDOW_WIDTH)
 	{
-		// Draw ceiling (dark gray)
-		y = 0;
-		while (y < wall_top && y < WINDOW_HEIGHT)
-		{
-			mlx_put_pixel(game->image, x, y, 0x333333FF);
-			y++;
-		}
-		
-		// Draw wall
+		draw_ceiling_floor(game, x, wall_top, wall_bottom);
 		y = wall_top;
 		while (y < wall_bottom && y < WINDOW_HEIGHT)
 		{
 			if (y >= 0)
-				mlx_put_pixel(game->image, x, y, wall_color);
-			y++;
-		}
-		
-		// Draw floor (light gray)
-		y = wall_bottom;
-		while (y < WINDOW_HEIGHT)
-		{
-			if (y >= 0)
-				mlx_put_pixel(game->image, x, y, 0xCCCCCCFF);
+			{
+				pixel_color = get_wall_pixel_color(game, ray, y, wall_top, 
+					wall_bottom);
+				mlx_put_pixel(game->image, x, y, pixel_color);
+			}
 			y++;
 		}
 		x++;
+	}
+}
+
+void	draw_ceiling_floor(t_game *game, int x, int wall_top, int wall_bottom)
+{
+	int	y;
+
+	y = 0;
+	while (y < wall_top && y < WINDOW_HEIGHT)
+	{
+		mlx_put_pixel(game->image, x, y, game->config->ceiling_color | 0xFF);
+		y++;
+	}
+	y = wall_bottom;
+	while (y < WINDOW_HEIGHT)
+	{
+		if (y >= 0)
+			mlx_put_pixel(game->image, x, y, game->config->floor_color | 0xFF);
+		y++;
 	}
 }

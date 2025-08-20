@@ -3,6 +3,7 @@
 
 int	init_mlx(t_game *game)
 {
+	mlx_set_setting(MLX_DECORATED, true);
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D", true);
 	if (!game->mlx)
 		return (0);
@@ -16,6 +17,11 @@ int	init_mlx(t_game *game)
 	{
 		mlx_terminate(game->mlx);
 		return (0);
+	}
+	if (!load_all_textures(game->config, &game->textures))
+	{
+    printf("Failed to load textures\n");
+    return (0);
 	}
 	return (1);
 }

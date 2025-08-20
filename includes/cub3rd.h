@@ -8,6 +8,7 @@
 # include <string.h>
 # include "../mlx/include/MLX42/MLX42.h"
 # include "../parsing/cube.h"
+# include "../textures/includes/textures.h"
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -57,7 +58,8 @@ typedef struct s_game
 	mlx_image_t	*image;
 	t_config	*config;
 	t_player	player;
-	t_ray		*rays;		// Array of rays
+	t_ray		*rays; // Array of rays
+	t_textures	textures;		
 }	t_game;
 
 /* Function prototypes - organized by file */

@@ -26,4 +26,8 @@ void	draw_minimap(t_game *game);
 void	draw_minimap_player(t_game *game);
 void	render_3d_view(t_game *game);
 void	draw_wall_strip(t_game *game, double ray_angle, int screen_x, int strip_width, double projection_distance);
+// Add these to rendering.h:
+void	draw_textured_wall_strip(t_game *game, t_ray *ray, int screen_x, 
+			int strip_width, int wall_top, int wall_bottom);
+void	draw_ceiling_floor(t_game *game, int x, int wall_top, int wall_bottom);
 #endif
