@@ -1,7 +1,13 @@
 #include "../../includes/cub3rd.h"
 #include "../../rendering/includes/rendering.h"
 
-#include "../../includes/cub3rd.h"
+void	close_window(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	mlx_close_window(game->mlx);
+}
 
 int	check_collision(t_game *game, double new_x, double new_y)
 {

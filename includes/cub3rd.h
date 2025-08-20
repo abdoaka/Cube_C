@@ -73,16 +73,16 @@ void	init_game(t_game *game, t_config *config);
 
 /* src/game/input.c */
 void	handle_input(void *param);
-void	game_loop(void *param);
+void	close_window(void *param);
 void	game_loop(void *param);
 
 /* src/utils/cleanup.c */
 void	cleanup_game(t_game *game);
 void	draw_rays(t_game *game);
-int	calculate_tile_size(t_game *game);
-/* src/game/input.c */
+int		calculate_tile_size(t_game *game);
+
+/* src/game/movement.c */
 void	move_player(t_game *game);
 void	rotate_player(t_game *game);
-void	handle_input(void *param);
-int	check_collision(t_game *game, double new_x, double new_y);
+int		check_collision(t_game *game, double new_x, double new_y);
 #endif

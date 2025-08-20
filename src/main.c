@@ -28,6 +28,7 @@ int	start_game(t_config *config)
 	// Set up hooks - one for input, one for rendering
 	mlx_loop_hook(game.mlx, handle_input, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
+	mlx_close_hook(game.mlx, close_window, &game);
 	
 	mlx_loop(game.mlx);
 	cleanup_game(&game);
