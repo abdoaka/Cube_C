@@ -48,6 +48,8 @@ int	main(int ac, char **av)
 	parse_file(av[1], &cfg);
 	printf("Parsing successful! Player at (%.1f, %.1f)\n",
 		cfg.player_x, cfg.player_y);
+	printf("Parsed ceiling color: 0x%06X\n", cfg.ceiling_color);
+	printf("Parsed floor color: 0x%06X\n", cfg.floor_color);
 	if (!start_game(&cfg))
 		return (1);
 	return (0);

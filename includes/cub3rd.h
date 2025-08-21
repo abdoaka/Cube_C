@@ -81,6 +81,9 @@ void	cleanup_game(t_game *game);
 void	draw_rays(t_game *game);
 int		calculate_tile_size(t_game *game);
 
+/* src/utils/math_utils.c */
+uint32_t	convert_rgb_to_rgba(int rgb_color);
+
 /* src/game/movement.c */
 void	move_player(t_game *game);
 void	rotate_player(t_game *game);
