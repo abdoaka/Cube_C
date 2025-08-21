@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures_loader.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: absaadan <absaadan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/21 19:23:20 by absaadan          #+#    #+#             */
+/*   Updated: 2025/08/21 19:23:22 by absaadan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/textures.h"
 #include <stdio.h>
 
@@ -28,7 +40,7 @@ int	load_single_texture(char *path, xpm_t **texture)
 		printf("Error: Failed to load texture: %s\n", path);
 		return (0);
 	}
-	printf("Loaded texture: %s (%dx%d)\n", path, 
+	printf("Loaded texture: %s (%dx%d)\n", path,
 		(*texture)->texture.width, (*texture)->texture.height);
 	return (1);
 }

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: absaadan <absaadan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/21 19:23:40 by absaadan          #+#    #+#             */
+/*   Updated: 2025/08/21 19:23:43 by absaadan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/textures.h"
 
 uint32_t	get_texture_pixel(xpm_t *texture, int x, int y)
 {
-	uint8_t	*pixel_data;
+	uint8_t		*pixel_data;
 	uint32_t	color;
 
 	if (!texture || x < 0 || y < 0)
@@ -14,14 +26,14 @@ uint32_t	get_texture_pixel(xpm_t *texture, int x, int y)
 	return (color);
 }
 
-uint32_t	get_wall_pixel_color(t_game *game, t_ray *ray, int screen_y, 
-	int wall_top, int wall_bottom)
+uint32_t	get_wall_pixel_color(t_game *game, t_ray *ray, int screen_y,
+		int wall_top, int wall_bottom)
 {
-	xpm_t		*texture;
-	double		wall_hit_pos;
-	int			tex_x;
-	int			tex_y;
-	double		tex_pos;
+	xpm_t	*texture;
+	double	wall_hit_pos;
+	int		tex_x;
+	int		tex_y;
+	double	tex_pos;
 
 	texture = get_wall_texture(game, ray);
 	wall_hit_pos = calculate_wall_hit_position(game, ray);
