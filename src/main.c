@@ -24,12 +24,9 @@ int	start_game(t_config *config)
 		cleanup_game(&game);
 		return (0);
 	}
-	
-	// Set up hooks - one for input, one for rendering
 	mlx_loop_hook(game.mlx, handle_input, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_close_hook(game.mlx, close_window, &game);
-	
 	mlx_loop(game.mlx);
 	cleanup_game(&game);
 	return (1);
@@ -51,6 +48,10 @@ int	main(int ac, char **av)
 	printf("Parsed ceiling color: 0x%06X\n", cfg.ceiling_color);
 	printf("Parsed floor color: 0x%06X\n", cfg.floor_color);
 	if (!start_game(&cfg))
+	{
+		cleanup_config(&cfg);
 		return (1);
+	}
+	cleanup_config(&cfg);
 	return (0);
 }

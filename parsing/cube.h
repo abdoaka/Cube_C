@@ -78,5 +78,6 @@ int		is_valid_map_char(char c);
 void	parse_config_line(char *line, t_config *cfg);
 void	parse_file(const char *filename, t_config *cfg);
 void	find_player(t_config *cfg);
+void	cleanup_config(t_config *cfg);
 
 #endif

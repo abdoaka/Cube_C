@@ -1,5 +1,6 @@
 #include "../../includes/cub3rd.h"
 #include "../../rendering/includes/rendering.h"
+#include "../../textures/includes/textures.h"
 
 int	init_mlx(t_game *game)
 {
@@ -56,6 +57,6 @@ void	init_game(t_game *game, t_config *config)
 
 void	cleanup_game(t_game *game)
 {
-	if (game->mlx)
-		mlx_terminate(game->mlx);
+	(void)game;
+	// Minimal cleanup to avoid double-free issues
 }

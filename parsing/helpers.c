@@ -85,3 +85,19 @@ char	*skip_spaces(char *str)
 		str++;
 	return (str);
 }
+
+void	cleanup_config(t_config *cfg)
+{
+	if (!cfg)
+		return ;
+	if (cfg->texture_no)
+		free(cfg->texture_no);
+	if (cfg->texture_so)
+		free(cfg->texture_so);
+	if (cfg->texture_we)
+		free(cfg->texture_we);
+	if (cfg->texture_ea)
+		free(cfg->texture_ea);
+	if (cfg->map_lines)
+		free_split(cfg->map_lines);
+}

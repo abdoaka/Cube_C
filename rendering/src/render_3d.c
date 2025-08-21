@@ -12,31 +12,19 @@ void	render_3d_view(t_game *game)
 	double	ray_angle;
 	int		strip_width;
 
-	// Performance settings
-	ray_count = WINDOW_WIDTH / 4;  // 256 rays for 1024px width
-	strip_width = 4;  // Each ray covers 4 pixel columns
-	
-	// Calculate projection distance (like your JS)
+	ray_count = WINDOW_WIDTH / 4;  
+	strip_width = 4;  
 	fov_radians = FOV * M_PI / 180.0;
 	projection_distance = (WINDOW_WIDTH / 2.0) / tan(fov_radians / 2.0);
-	
-	// Calculate angle step between rays
 	angle_step = fov_radians / ray_count;
-	
 	ray_index = 0;
 	while (ray_index < ray_count)
 	{
-		// Calculate ray angle
-		ray_angle = game->player.rotation - (fov_radians / 2.0) + (ray_index * angle_step);
-		
-		// Cast ray and draw wall strip
+		ray_angle = game->player.rotation - (fov_radians / 2.0) + (ray_index * angle_step);	
 		draw_wall_strip(game, ray_angle, ray_index * strip_width, strip_width, projection_distance);
-		
 		ray_index++;
 	}
 }
-
-// Replace your draw_wall_strip function in render_3d.c with this:
 
 void	draw_wall_strip(t_game *game, double ray_angle, int screen_x, 
 	int strip_width, double projection_distance)

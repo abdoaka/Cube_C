@@ -36,11 +36,23 @@ int	load_single_texture(char *path, xpm_t **texture)
 void	free_all_textures(t_textures *textures)
 {
 	if (textures->north)
+	{
 		mlx_delete_xpm42(textures->north);
+		textures->north = NULL;
+	}
 	if (textures->south)
+	{
 		mlx_delete_xpm42(textures->south);
+		textures->south = NULL;
+	}
 	if (textures->east)
+	{
 		mlx_delete_xpm42(textures->east);
+		textures->east = NULL;
+	}
 	if (textures->west)
+	{
 		mlx_delete_xpm42(textures->west);
+		textures->west = NULL;
+	}
 }

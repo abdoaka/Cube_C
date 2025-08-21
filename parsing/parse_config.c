@@ -1,4 +1,12 @@
-/* ************************************************************************** */
+/* **************************************************	else
+	{
+		free(value);
+		free_split(parts);
+		error("Unknown config key");
+	}
+	free(value);
+	free_split(parts);
+}****************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
@@ -77,8 +85,11 @@ void	parse_config_line(char *line, t_config *cfg)
 {
 	char	**parts;
 	char	*value;
+	char	*trimmed_line;
 
-	parts = ft_split(str_trim(line), ' ');
+	trimmed_line = str_trim(line);
+	parts = ft_split(trimmed_line, ' ');
+	free(trimmed_line);
 	if (!parts || !parts[0] || !parts[1] || parts[2])
 		error("Invalid config line");
 	value = str_trim(parts[1]);

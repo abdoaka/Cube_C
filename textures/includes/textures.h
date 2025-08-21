@@ -4,11 +4,11 @@
 # include "../../mlx/include/MLX42/MLX42.h"
 # include "../../parsing/cube.h"
 
-/* Forward declarations */
+
 typedef struct s_game	t_game;
 typedef struct s_ray	t_ray;
 
-/* Texture storage structure */
+
 typedef struct s_textures
 {
 	xpm_t		*north;
@@ -17,7 +17,7 @@ typedef struct s_textures
 	xpm_t		*west;
 }	t_textures;
 
-/* Function prototypes */
+
 int			load_all_textures(t_config *config, t_textures *textures);
 void		free_all_textures(t_textures *textures);
 int			load_single_texture(char *path, xpm_t **texture);
