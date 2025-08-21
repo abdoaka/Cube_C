@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: absaadan <absaadan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/21 19:08:06 by absaadan          #+#    #+#             */
+/*   Updated: 2025/08/21 19:11:45 by absaadan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3rd.h"
 #include "../../rendering/includes/rendering.h"
 #include "../../textures/includes/textures.h"
@@ -21,8 +33,8 @@ int	init_mlx(t_game *game)
 	}
 	if (!load_all_textures(game->config, &game->textures))
 	{
-    printf("Failed to load textures\n");
-    return (0);
+		printf("Failed to load textures\n");
+		return (0);
 	}
 	return (1);
 }
@@ -58,5 +70,4 @@ void	init_game(t_game *game, t_config *config)
 void	cleanup_game(t_game *game)
 {
 	(void)game;
-	// Minimal cleanup to avoid double-free issues
 }
