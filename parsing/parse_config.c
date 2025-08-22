@@ -23,6 +23,19 @@ static int	parse_color_value(char *value)
 	int		r;
 	int		g;
 	int		b;
+	int		i;
+
+	// Check for consecutive commas or empty string
+	if (!value || ft_strlen(value) == 0 || ft_strncmp(value, ",", 1) == 0)
+		error("Invalid color format");
+
+	i = 0;
+	while (value[i])
+	{
+		if (value[i] == ',' && (value[i + 1] == ',' || value[i + 1] == '\0'))
+			error("Invalid color format: commas problem");
+		i++;
+	}
 
 	rgb = ft_split(value, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
@@ -30,46 +43,41 @@ static int	parse_color_value(char *value)
 		free_split(rgb);
 		error("Invalid color format");
 	}
+
 	if (!is_all_digits(rgb[0]) || !is_all_digits(rgb[1]) || !is_all_digits(rgb[2]))
 	{
 		free_split(rgb);
-		error("Invalid color format");
+		error("Invalid color format: non-digit value");
 	}
+
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
 	free_split(rgb);
+
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		error("Color values out of range");
+
 	return ((r << 16) | (g << 8) | b);
+}
+
+static void	set_texture(char **target, char *value, char *err_msg)
+{
+	if (*target)
+		error(err_msg);
+	*target = value;
 }
 
 static void	parse_texture(char *key, char *value, t_config *cfg)
 {
 	if (!ft_strncmp(key, "NO", 3))
-	{
-		if (cfg->texture_no)
-			error("Duplicate NO texture");
-		cfg->texture_no = value;
-	}
+		set_texture(&cfg->texture_no, value, "Duplicate NO texture");
 	else if (!ft_strncmp(key, "SO", 3))
-	{
-		if (cfg->texture_so)
-			error("Duplicate SO texture");
-		cfg->texture_so = value;
-	}
+		set_texture(&cfg->texture_so, value, "Duplicate SO texture");
 	else if (!ft_strncmp(key, "WE", 3))
-	{
-		if (cfg->texture_we)
-			error("Duplicate WE texture");
-		cfg->texture_we = value;
-	}
+		set_texture(&cfg->texture_we, value, "Duplicate WE texture");
 	else if (!ft_strncmp(key, "EA", 3))
-	{
-		if (cfg->texture_ea)
-			error("Duplicate EA texture");
-		cfg->texture_ea = value;
-	}
+		set_texture(&cfg->texture_ea, value, "Duplicate EA texture");
 	else
 	{
 		free(value);
@@ -108,9 +116,7 @@ void	parse_config_line(char *line, t_config *cfg)
 	parts = ft_split(str_trim(line), ' ');
 	if (!parts || !parts[0] || !parts[1] || parts[2])
 		error("Invalid config line");
-
 	value = str_trim(parts[1]);
-
 	if (!ft_strncmp(parts[0], "NO", 3) || !ft_strncmp(parts[0], "SO", 3)
 		|| !ft_strncmp(parts[0], "WE", 3) || !ft_strncmp(parts[0], "EA", 3))
 		parse_texture(parts[0], value, cfg);

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 07:55:14 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/14 03:03:59 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/22 16:34:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,20 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)&str[i]);
 	}
 	return (NULL);
+}
+
+void	cleanup_config(t_config *cfg)
+{
+	if (!cfg)
+		return ;
+	if (cfg->texture_no)
+		free(cfg->texture_no);
+	if (cfg->texture_so)
+		free(cfg->texture_so);
+	if (cfg->texture_we)
+		free(cfg->texture_we);
+	if (cfg->texture_ea)
+		free(cfg->texture_ea);
+	if (cfg->map_lines)
+		free_split(cfg->map_lines);
 }

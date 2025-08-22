@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 07:05:45 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/13 07:40:33 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:33:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	error(const char *msg)  
+void	error(const char *msg)
 {
 	write(2, "Error\n", 6);
 	while (*msg)
@@ -84,20 +84,4 @@ char	*skip_spaces(char *str)
 	while (*str == ' ' || *str == '\t')
 		str++;
 	return (str);
-}
-
-void	cleanup_config(t_config *cfg)
-{
-	if (!cfg)
-		return ;
-	if (cfg->texture_no)
-		free(cfg->texture_no);
-	if (cfg->texture_so)
-		free(cfg->texture_so);
-	if (cfg->texture_we)
-		free(cfg->texture_we);
-	if (cfg->texture_ea)
-		free(cfg->texture_ea);
-	if (cfg->map_lines)
-		free_split(cfg->map_lines);
 }
