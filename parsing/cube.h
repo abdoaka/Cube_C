@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 21:04:43 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/14 04:31:49 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/22 19:06:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ void	parse_config_line(char *line, t_config *cfg);
 void	parse_file(const char *filename, t_config *cfg);
 void	find_player(t_config *cfg);
 void	cleanup_config(t_config *cfg);
+void	check_commas(char *value);
+void	set_texture(char **target, char *value, char *err_msg);
 
 #endif

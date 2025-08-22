@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 02:00:04 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/21 18:00:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/22 18:00:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,23 @@ static int	parse_color_value(char *value);
 static void	parse_texture(char *key, char *value, t_config *cfg);
 static void	parse_floor_ceiling(char *key, char *value, t_config *cfg);
 
+// Parse and validate "R,G,B" format into int
 static int	parse_color_value(char *value)
 {
 	char	**rgb;
 	int		r;
 	int		g;
 	int		b;
-	int		i;
 
-	if (!value || ft_strlen(value) == 0 || ft_strncmp(value, ",", 1) == 0)
-		error("Invalid color format");
-	i = 0;
-	while (value[i])
-	{
-		if (value[i] == ',' && (value[i + 1] == ',' || value[i + 1] == '\0'))
-			error("Invalid color format: commas problem");
-		i++;
-	}
+	check_commas(value);
 	rgb = ft_split(value, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
 	{
 		free_split(rgb);
-		error("Invalid color format");
+		error("Invalid color format: must have exactly 3 values");
 	}
 	if (!is_all_digits(rgb[0]) || !is_all_digits(rgb[1])
-		|| !is_all_digits(rgb[2]))
+		||!is_all_digits(rgb[2]))
 	{
 		free_split(rgb);
 		error("Invalid color format: non-digit value");
@@ -53,13 +45,6 @@ static int	parse_color_value(char *value)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		error("Color values out of range");
 	return ((r << 16) | (g << 8) | b);
-}
-
-static void	set_texture(char **target, char *value, char *err_msg)
-{
-	if (*target)
-		error(err_msg);
-	*target = value;
 }
 
 static void	parse_texture(char *key, char *value, t_config *cfg)
@@ -97,9 +82,7 @@ static void	parse_floor_ceiling(char *key, char *value, t_config *cfg)
 		cfg->ceiling_color = color;
 	}
 	else
-	{
 		error("Unknown color key");
-	}
 }
 
 void	parse_config_line(char *line, t_config *cfg)
