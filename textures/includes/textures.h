@@ -27,10 +27,11 @@ typedef struct s_textures
 	xpm_t				*west;
 }						t_textures;
 
-typedef struct s_wall_bounds {
-    int top;
-    int bottom;
-} t_wall_bounds;
+typedef struct s_wall_bounds
+{
+	int					top;
+	int					bottom;
+}						t_wall_bounds;
 
 int						load_all_textures(t_config *config,
 							t_textures *textures);
@@ -42,6 +43,7 @@ xpm_t					*get_horizontal_wall_texture(t_game *game, t_ray *ray);
 double					calculate_wall_hit_position(t_game *game, t_ray *ray);
 int						get_texture_x(xpm_t *texture, double wall_hit_pos);
 uint32_t				get_texture_pixel(xpm_t *texture, int x, int y);
-uint32_t get_wall_pixel_color(t_game *game, t_ray *ray, int screen_y, t_wall_bounds *bounds);
+uint32_t				get_wall_pixel_color(t_game *game, t_ray *ray,
+							int screen_y, t_wall_bounds *bounds);
 
 #endif

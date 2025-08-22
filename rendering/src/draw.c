@@ -14,32 +14,32 @@
 #include "../../textures/includes/textures.h"
 #include "../includes/rendering.h"
 
-void draw_textured_wall_strip(t_game *game, t_ray *ray, int screen_x, int strip_width, int wall_top, int wall_bottom)
+void	draw_textured_wall_strip(t_game *game, t_ray *ray, int screen_x,
+		int strip_width, int wall_top, int wall_bottom)
 {
-    int x;
-    int y;
-	uint32_t pixel_color;
-    t_wall_bounds bounds;
+	int				x;
+	int				y;
+	uint32_t		pixel_color;
+	t_wall_bounds	bounds;
 
-    bounds.top = wall_top;
-    bounds.bottom = wall_bottom;
-    
-    x = screen_x;
-    while (x < screen_x + strip_width && x < WINDOW_WIDTH)
-    {
-        draw_ceiling_floor(game, x, wall_top, wall_bottom);
-        y = wall_top;
-        while (y < wall_bottom && y < WINDOW_HEIGHT)
-        {
-            if (y >= 0)
-            {
-                pixel_color = get_wall_pixel_color(game, ray, y, &bounds);
-                mlx_put_pixel(game->image, x, y, pixel_color);
-            }
-            y++;
-        }
-        x++;
-    }
+	bounds.top = wall_top;
+	bounds.bottom = wall_bottom;
+	x = screen_x;
+	while (x < screen_x + strip_width && x < WINDOW_WIDTH)
+	{
+		draw_ceiling_floor(game, x, wall_top, wall_bottom);
+		y = wall_top;
+		while (y < wall_bottom && y < WINDOW_HEIGHT)
+		{
+			if (y >= 0)
+			{
+				pixel_color = get_wall_pixel_color(game, ray, y, &bounds);
+				mlx_put_pixel(game->image, x, y, pixel_color);
+			}
+			y++;
+		}
+		x++;
+	}
 }
 
 void	draw_ceiling_floor(t_game *game, int x, int wall_top, int wall_bottom)
