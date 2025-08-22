@@ -69,5 +69,6 @@ void	init_game(t_game *game, t_config *config)
 
 void	cleanup_game(t_game *game)
 {
-	(void)game;
+	if (game && game->textures)
+		free_all_textures(game->textures);
 }
