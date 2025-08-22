@@ -18,31 +18,35 @@
 typedef struct s_game	t_game;
 typedef struct s_ray	t_ray;
 
-typedef struct s_horizontal_ray_data
-{
-	double				y_intercept;
-	double				x_intercept;
-	double				y_step;
-	double				x_step;
-	double				next_x;
-	double				next_y;
-	int					tile_size;
-	int					max_width;
-	int					max_height;
-}						t_horizontal_ray_data;
+typedef struct s_horizontal_ray_data {
+    double  y_intercept;
+    double  x_intercept;
+    double  y_step;
+    double  x_step;
+    double  next_x;
+    double  next_y;
+    int     tile_size;
+    int     max_width;
+    int     max_height;
+    double  result_x;
+    double  result_y;
+    int     wall_found;
+} t_horizontal_ray_data;
 
-typedef struct s_vertical_ray_data
-{
-	double				x_intercept;
-	double				y_intercept;
-	double				x_step;
-	double				y_step;
-	double				next_x;
-	double				next_y;
-	int					tile_size;
-	int					max_width;
-	int					max_height;
-}						t_vertical_ray_data;
+typedef struct s_vertical_ray_data {
+    double  x_intercept;
+    double  y_intercept;
+    double  x_step;
+    double  y_step;
+    double  next_x;
+    double  next_y;
+    int     tile_size;
+    int     max_width;
+    int     max_height;
+    double  result_x;
+    double  result_y;
+    int     wall_found;
+} t_vertical_ray_data;
 
 typedef struct s_ray_intersection
 {

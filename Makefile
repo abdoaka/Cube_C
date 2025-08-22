@@ -15,7 +15,7 @@ endif
 
 # Source files and headers
 SRCS = src/main.c src/game/input.c src/game/init.c src/game/movement.c src/game/camera.c \
-       src/utils/cleanup.c src/utils/error.c src/utils/math_utils.c
+    	src/utils/math_utils.c
 
 OBJS = ${SRCS:.c=.o}
 HEADERS = includes/cub3rd.h

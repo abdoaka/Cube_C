@@ -49,40 +49,41 @@ static void	setup_vertical_intercept(t_game *game, t_ray *ray,
 	data->next_y = data->y_intercept;
 }
 
-static int	step_vertical_ray(t_game *game, t_ray *ray,
-		t_vertical_ray_data *data, double *v_x, double *v_y)
+static void step_vertical_ray(t_game *game, t_ray *ray, t_vertical_ray_data *data)
 {
-	double	check_x;
+    double check_x;
 
-	while (data->next_x >= 0 && data->next_x < data->max_width
-		&& data->next_y >= 0 && data->next_y < data->max_height)
-	{
-		check_x = data->next_x;
-		if (cos(ray->angle) < 0)
-			check_x -= 1;
-		if (is_wall(game, check_x, data->next_y))
-		{
-			*v_x = data->next_x / data->tile_size;
-			*v_y = data->next_y / data->tile_size;
-			return (1);
-		}
-		data->next_x += data->x_step;
-		data->next_y += data->y_step;
-	}
-	return (0);
+    while (data->next_x >= 0 && data->next_x < data->max_width
+        && data->next_y >= 0 && data->next_y < data->max_height)
+    {
+        check_x = data->next_x;
+        if (cos(ray->angle) < 0)
+            check_x -= 1;
+        if (is_wall(game, check_x, data->next_y))
+        {
+            data->result_x = data->next_x / data->tile_size;
+            data->result_y = data->next_y / data->tile_size;
+            data->wall_found = 1;
+            return;
+        }
+        data->next_x += data->x_step;
+        data->next_y += data->y_step;
+    }
+    data->result_x = -1;
+    data->result_y = -1;
+    data->wall_found = 0;
 }
 
-void	cast_vertical_ray(t_game *game, t_ray *ray, double *v_x, double *v_y)
+void cast_vertical_ray(t_game *game, t_ray *ray, double *v_x, double *v_y)
 {
-	t_vertical_ray_data	data;
+    t_vertical_ray_data data;
 
-	data.tile_size = calculate_tile_size(game);
-	if (data.tile_size < 4)
-		data.tile_size = 4;
-	calculate_map_boundaries(game, &data);
-	setup_vertical_intercept(game, ray, &data);
-	if (step_vertical_ray(game, ray, &data, v_x, v_y))
-		return ;
-	*v_x = -1;
-	*v_y = -1;
+    data.tile_size = calculate_tile_size(game);
+    if (data.tile_size < 4)
+        data.tile_size = 4;
+    calculate_map_boundaries(game, &data);
+    setup_vertical_intercept(game, ray, &data);
+    step_vertical_ray(game, ray, &data);
+    *v_x = data.result_x;
+    *v_y = data.result_y;
 }
