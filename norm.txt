@@ -1,41 +1,22 @@
+All textures loaded successfully!
+leaks Report Version: 4.0
+Process 13889: 21662 nodes malloced for 18375 KB
+Process 13889: 12 leaks for 4116816 total leaked bytes.
 
-➜  includes git:(main) ✗ norminette rendering.h
-rendering.h: Error!
-Error: TOO_MANY_ARGS        (line:  68, col:  56):      Function has more than 4 arguments
-Error: TOO_MANY_ARGS        (line:  71, col:  45):      Function has more than 4 arguments
-➜  includes git:(main) ✗
-static int	step_horizontal_ray(t_game *game, t_ray *ray,
-		t_horizontal_ray_data *data, double *h_x, double *h_y)
-  src git:(main) ✗ norminette render_3d.c
-render_3d.c: Error!
-Error: TOO_MANY_VARS_FUNC   (line:  24, col:   1):      Too many variables declarations in a function
-Error: TOO_MANY_VARS_FUNC   (line:  25, col:   1):      Too many variables declarations in a function
-Error: TOO_MANY_ARGS        (line:  44, col:  53):      Function has more than 4 arguments
-Error: TOO_MANY_ARGS        (line:  63, col:  56):      Function has more than 4 arguments
-➜  src git:(main) ✗
+    12 (3.93M) << TOTAL >>
 
+      2 (1.48M) ROOT LEAK: 0x7fbfdd82ee40 [48]
+         1 (1.48M) 0x7fbfe1c01000 [1552384]
 
-##############
-rendering/includes/rendering.h: Error!
-Error: TOO_MANY_ARGS        (line:  68, col:  56):      Function has more than 4 arguments
-Error: TOO_MANY_ARGS        (line:  71, col:  45):      Function has more than 4 arguments
-rendering/src/cast_horizontal_ray.c: Error!
-Error: TOO_MANY_ARGS        (line:  53, col:  63):      Function has more than 4 arguments
-rendering/src/cast_vertical_ray.c: Error!
-Error: TOO_MANY_ARGS        (line:  53, col:  61):      Function has more than 4 arguments
-rendering/src/draw.c: Error!
-Error: TOO_MANY_ARGS        (line:  18, col:  56):      Function has more than 4 arguments
-rendering/src/raycasting.c: OK!
-rendering/src/render.c: OK!
-rendering/src/render_3d.c: Error!
-Error: TOO_MANY_VARS_FUNC   (line:  24, col:   1):      Too many variables declarations in a function
-Error: TOO_MANY_VARS_FUNC   (line:  25, col:   1):      Too many variables declarations in a function
-Error: TOO_MANY_ARGS        (line:  44, col:  53):      Function has more than 4 arguments
+      2 (1.27M) ROOT LEAK: 0x7fbfdd82ef00 [48]
+         1 (1.27M) 0x7fbfe1d7c000 [1335296]
 
-textures/includes/textures.h: Error!
-Error: TOO_MANY_ARGS        (line:  41, col:  59):      Function has more than 4 arguments
-textures/src/texture_mapper.c: OK!
-textures/src/textures_loader.c: OK!
-textures/src/textures_utils.c: Error!
-Error: TOO_MANY_ARGS        (line:  30, col:  39):      Function has more than 4 arguments
+      2 (1.17M) ROOT LEAK: 0x7fbfdc4262e0 [48]
+         1 (1.17M) 0x7fbfe1ec2000 [1228800]
 
+      1 (48 bytes) ROOT LEAK: 0x7fbfdc40e420 [48]  length: 32  "SO ./textures/images/south.xpm42"
+      1 (48 bytes) ROOT LEAK: 0x7fbfdc40e840 [48]  length: 32  "NO  ./textures/images/gavi.xpm42"
+      1 (32 bytes) ROOT LEAK: 0x7fbfdc40e400 [32]  length: 31  "EA ./textures/images/east.xpm42"
+      1 (32 bytes) ROOT LEAK: 0x7fbfdc40e8c0 [32]  length: 31  "WE ./textures/images/west.xpm42"
+      1 (16 bytes) ROOT LEAK: 0x7fbfdc404440 [16]  length: 10  "F 34,34,34"
+      1 (16 bytes) ROOT LEAK: 0x7fbfdc40b0e0 [16]  length: 11  "C 25,25,112"
