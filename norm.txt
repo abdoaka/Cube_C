@@ -1,22 +1,32 @@
 All textures loaded successfully!
 leaks Report Version: 4.0
-Process 13889: 21662 nodes malloced for 18375 KB
-Process 13889: 12 leaks for 4116816 total leaked bytes.
+Process 19486: 21583 nodes malloced for 18376 KB
+Process 19486: 8 leaks for 5169344 total leaked bytes.
 
-    12 (3.93M) << TOTAL >>
+    8 (4.93M) << TOTAL >>
 
-      2 (1.48M) ROOT LEAK: 0x7fbfdd82ee40 [48]
-         1 (1.48M) 0x7fbfe1c01000 [1552384]
+      2 (1.48M) ROOT LEAK: 0x7fc00f442980 [48]
+         1 (1.48M) 0x7fc015300000 [1552384]
 
-      2 (1.27M) ROOT LEAK: 0x7fbfdd82ef00 [48]
-         1 (1.27M) 0x7fbfe1d7c000 [1335296]
+      2 (1.27M) ROOT LEAK: 0x7fc00f524770 [48]
+         1 (1.27M) 0x7fc01547b000 [1335296]
 
-      2 (1.17M) ROOT LEAK: 0x7fbfdc4262e0 [48]
-         1 (1.17M) 0x7fbfe1ec2000 [1228800]
+      2 (1.17M) ROOT LEAK: 0x7fc011011900 [48]
+         1 (1.17M) 0x7fc0155c1000 [1228800]
 
-      1 (48 bytes) ROOT LEAK: 0x7fbfdc40e420 [48]  length: 32  "SO ./textures/images/south.xpm42"
-      1 (48 bytes) ROOT LEAK: 0x7fbfdc40e840 [48]  length: 32  "NO  ./textures/images/gavi.xpm42"
-      1 (32 bytes) ROOT LEAK: 0x7fbfdc40e400 [32]  length: 31  "EA ./textures/images/east.xpm42"
-      1 (32 bytes) ROOT LEAK: 0x7fbfdc40e8c0 [32]  length: 31  "WE ./textures/images/west.xpm42"
-      1 (16 bytes) ROOT LEAK: 0x7fbfdc404440 [16]  length: 10  "F 34,34,34"
-      1 (16 bytes) ROOT LEAK: 0x7fbfdc40b0e0 [16]  length: 11  "C 25,25,112"
+      2 (1.00M) ROOT LEAK: 0x7fc011013090 [48]
+         1 (1.00M) 0x7fc014600000 [1052672]
+
+Parsing errors
+F 34,34,34,,,,,,,
+
+F   0,0,0,
+C   0,0,0
+
+
+
+1111111111
+10000111111111
+100001S001111
+11111111111
+
