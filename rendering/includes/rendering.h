@@ -55,6 +55,28 @@ typedef struct s_ray_intersection
 	double				distance;
 }						t_ray_intersection;
 
+typedef struct s_wall_strip_params {
+    int screen_x;
+    int strip_width;
+    int wall_top;
+    int wall_bottom;
+} t_wall_strip_params;
+
+typedef struct s_render_data {
+    int     ray_count;
+    int     strip_width;
+    double  projection_distance;
+    double  fov_radians;
+    double  angle_step;
+} t_render_data;
+
+typedef struct s_strip_render_params {
+    double  ray_angle;
+    int     screen_x;
+    int     strip_width;
+    double  projection_distance;
+} t_strip_render_params;
+
 int						is_wall(t_game *game, double x, double y);
 double					normalize_angle(double angle);
 double					distance_between_points(double x1, double y1, double x2,
