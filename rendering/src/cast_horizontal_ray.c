@@ -49,40 +49,41 @@ static void	setup_horizontal_intercept(t_game *game, t_ray *ray,
 	data->next_y = data->y_intercept;
 }
 
-static int	step_horizontal_ray(t_game *game, t_ray *ray,
-		t_horizontal_ray_data *data, double *h_x, double *h_y)
+static void step_horizontal_ray(t_game *game, t_ray *ray, t_horizontal_ray_data *data)
 {
-	double	check_y;
+    double check_y;
 
-	while (data->next_x >= 0 && data->next_x < data->max_width
-		&& data->next_y >= 0 && data->next_y < data->max_height)
-	{
-		check_y = data->next_y;
-		if (sin(ray->angle) < 0)
-			check_y -= 1;
-		if (is_wall(game, data->next_x, check_y))
-		{
-			*h_x = data->next_x / data->tile_size;
-			*h_y = data->next_y / data->tile_size;
-			return (1);
-		}
-		data->next_x += data->x_step;
-		data->next_y += data->y_step;
-	}
-	return (0);
+    while (data->next_x >= 0 && data->next_x < data->max_width
+        && data->next_y >= 0 && data->next_y < data->max_height)
+    {
+        check_y = data->next_y;
+        if (sin(ray->angle) < 0)
+            check_y -= 1;
+        if (is_wall(game, data->next_x, check_y))
+        {
+            data->result_x = data->next_x / data->tile_size;
+            data->result_y = data->next_y / data->tile_size;
+            data->wall_found = 1;
+            return;
+        }
+        data->next_x += data->x_step;
+        data->next_y += data->y_step;
+    }
+    data->result_x = -1;
+    data->result_y = -1;
+    data->wall_found = 0;
 }
 
-void	cast_horizontal_ray(t_game *game, t_ray *ray, double *h_x, double *h_y)
+void cast_horizontal_ray(t_game *game, t_ray *ray, double *h_x, double *h_y)
 {
-	t_horizontal_ray_data	data;
+    t_horizontal_ray_data data;
 
-	data.tile_size = calculate_tile_size(game);
-	if (data.tile_size < 4)
-		data.tile_size = 4;
-	calculate_map_boundaries(game, &data);
-	setup_horizontal_intercept(game, ray, &data);
-	if (step_horizontal_ray(game, ray, &data, h_x, h_y))
-		return ;
-	*h_x = -1;
-	*h_y = -1;
+    data.tile_size = calculate_tile_size(game);
+    if (data.tile_size < 4)
+        data.tile_size = 4;
+    calculate_map_boundaries(game, &data);
+    setup_horizontal_intercept(game, ray, &data);
+    step_horizontal_ray(game, ray, &data);
+    *h_x = data.result_x;
+    *h_y = data.result_y;
 }
