@@ -2,7 +2,7 @@ NO ./textures/images/gavi.xpm42
 SO ./textures/images/south.xpm42
 EA ./textures/images/east.xpm42
 WE ./textures/images/west.xpm42
-F 0,0,0     
+F 255,255,255
 C 255,255,255
 
 11111111111111111111111111111111111111111111111111111111111111111111111111111

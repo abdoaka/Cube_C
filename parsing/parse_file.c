@@ -61,8 +61,6 @@ static void	validate_and_setup(t_config *cfg)
 		error("Missing texture paths");
 	if (cfg->floor_color == -1 || cfg->ceiling_color == -1)
 		error("Missing floor or ceiling color");
-	if (cfg->floor_color == cfg->ceiling_color)
-		error("Floor and ceiling colors must be different");
 	validate_map_characters(cfg);
 	padded = pad_map(cfg->map_lines, cfg->map_height, &width);
 	check_closed_map(padded, cfg->map_height, width);

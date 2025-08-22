@@ -25,10 +25,8 @@ static int	parse_color_value(char *value)
 	int		b;
 	int		i;
 
-	// Check for consecutive commas or empty string
 	if (!value || ft_strlen(value) == 0 || ft_strncmp(value, ",", 1) == 0)
 		error("Invalid color format");
-
 	i = 0;
 	while (value[i])
 	{
@@ -36,28 +34,24 @@ static int	parse_color_value(char *value)
 			error("Invalid color format: commas problem");
 		i++;
 	}
-
 	rgb = ft_split(value, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
 	{
 		free_split(rgb);
 		error("Invalid color format");
 	}
-
-	if (!is_all_digits(rgb[0]) || !is_all_digits(rgb[1]) || !is_all_digits(rgb[2]))
+	if (!is_all_digits(rgb[0]) || !is_all_digits(rgb[1])
+		|| !is_all_digits(rgb[2]))
 	{
 		free_split(rgb);
 		error("Invalid color format: non-digit value");
 	}
-
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
 	free_split(rgb);
-
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		error("Color values out of range");
-
 	return ((r << 16) | (g << 8) | b);
 }
 
