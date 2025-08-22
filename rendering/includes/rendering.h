@@ -94,12 +94,9 @@ void					cast_single_ray(t_game *game, t_ray *ray);
 
 void					render_frame(t_game *game);
 void					render_3d_view(t_game *game);
-void					draw_wall_strip(t_game *game, double ray_angle,
-							int screen_x, int strip_width,
-							double projection_distance);
-void					draw_textured_wall_strip(t_game *game, t_ray *ray,
-							int screen_x, int strip_width, int wall_top,
-							int wall_bottom);
+void draw_wall_strip(t_game *game, t_strip_render_params *params);
+
+void draw_textured_wall_strip(t_game *game, t_ray *ray, t_wall_strip_params *params);
 void					draw_ceiling_floor(t_game *game, int x, int wall_top,
 							int wall_bottom);
 #endif
