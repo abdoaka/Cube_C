@@ -1,12 +1,4 @@
-/* **************************************************	else
-	{
-		free(value);
-		free_split(parts);
-		error("Unknown config key");
-	}
-	free(value);
-	free_split(parts);
-}****************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
@@ -14,11 +6,16 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 02:00:04 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/14 02:00:04 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/21 18:00:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+// Forward declarations
+static int	parse_color_value(char *value);
+static void	parse_texture(char *key, char *value, t_config *cfg);
+static void	parse_floor_ceiling(char *key, char *value, t_config *cfg);
 
 static int	parse_color_value(char *value)
 {
@@ -33,9 +30,7 @@ static int	parse_color_value(char *value)
 		free_split(rgb);
 		error("Invalid color format");
 	}
-	if (!is_all_digits(rgb[0])
-		|| !is_all_digits(rgb[1])
-		|| !is_all_digits(rgb[2]))
+	if (!is_all_digits(rgb[0]) || !is_all_digits(rgb[1]) || !is_all_digits(rgb[2]))
 	{
 		free_split(rgb);
 		error("Invalid color format");
@@ -52,13 +47,29 @@ static int	parse_color_value(char *value)
 static void	parse_texture(char *key, char *value, t_config *cfg)
 {
 	if (!ft_strncmp(key, "NO", 3))
+	{
+		if (cfg->texture_no)
+			error("Duplicate NO texture");
 		cfg->texture_no = value;
+	}
 	else if (!ft_strncmp(key, "SO", 3))
+	{
+		if (cfg->texture_so)
+			error("Duplicate SO texture");
 		cfg->texture_so = value;
+	}
 	else if (!ft_strncmp(key, "WE", 3))
+	{
+		if (cfg->texture_we)
+			error("Duplicate WE texture");
 		cfg->texture_we = value;
+	}
 	else if (!ft_strncmp(key, "EA", 3))
+	{
+		if (cfg->texture_ea)
+			error("Duplicate EA texture");
 		cfg->texture_ea = value;
+	}
 	else
 	{
 		free(value);
@@ -72,9 +83,17 @@ static void	parse_floor_ceiling(char *key, char *value, t_config *cfg)
 
 	color = parse_color_value(value);
 	if (!ft_strncmp(key, "F", 2))
+	{
+		if (cfg->floor_color != -1)
+			error("Duplicate floor color");
 		cfg->floor_color = color;
+	}
 	else if (!ft_strncmp(key, "C", 2))
+	{
+		if (cfg->ceiling_color != -1)
+			error("Duplicate ceiling color");
 		cfg->ceiling_color = color;
+	}
 	else
 	{
 		error("Unknown color key");
@@ -85,19 +104,21 @@ void	parse_config_line(char *line, t_config *cfg)
 {
 	char	**parts;
 	char	*value;
-	char	*trimmed_line;
 
-	trimmed_line = str_trim(line);
-	parts = ft_split(trimmed_line, ' ');
-	free(trimmed_line);
+	parts = ft_split(str_trim(line), ' ');
 	if (!parts || !parts[0] || !parts[1] || parts[2])
 		error("Invalid config line");
+
 	value = str_trim(parts[1]);
+
 	if (!ft_strncmp(parts[0], "NO", 3) || !ft_strncmp(parts[0], "SO", 3)
 		|| !ft_strncmp(parts[0], "WE", 3) || !ft_strncmp(parts[0], "EA", 3))
 		parse_texture(parts[0], value, cfg);
 	else if (!ft_strncmp(parts[0], "F", 2) || !ft_strncmp(parts[0], "C", 2))
+	{
 		parse_floor_ceiling(parts[0], value, cfg);
+		free(value);
+	}
 	else
 	{
 		free(value);
