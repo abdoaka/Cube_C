@@ -34,6 +34,7 @@ int	init_mlx(t_game *game)
 	if (!load_all_textures(game->config, &game->textures))
 	{
 		printf("Failed to load textures\n");
+		mlx_terminate(game->mlx);
 		return (0);
 	}
 	return (1);
@@ -69,6 +70,8 @@ void	init_game(t_game *game, t_config *config)
 
 void	cleanup_game(t_game *game)
 {
-	if (game && game->textures)
-		free_all_textures(game->textures);
+	if (game)
+		free_all_textures(&game->textures);
+	if (game && game->mlx)
+		mlx_terminate(game->mlx);
 }
