@@ -10,7 +10,7 @@ NAME = cub3D
 ifeq ($(UNAME), Linux)
     MLX_FLAGS = -ldl -lglfw -pthread -lm
 else ifeq ($(UNAME), Darwin)
-    MLX_FLAGS = -L/goinfre/absaadan/homebrew/opt/glfw/lib -lglfw
+    MLX_FLAGS = -L/Users/zkharbac/.brew/opt/glfw/lib -lglfw
 endif
 
 # Source files and headers

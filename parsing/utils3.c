@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 07:52:52 by zkharbac          #+#    #+#             */
-/*   Updated: 2025/08/22 19:05:16 by marvin           ###   ########.fr       */
+/*   Updated: 2025/08/23 10:48:07 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void	check_commas(char *value)
 	int	i;
 
 	if (!value || ft_strlen(value) == 0 || value[0] == ',')
-		error("Invalid color format: starts with comma or empty");
+		error("Invalid color format");
 	i = 0;
 	while (value[i])
 	{
 		if (value[i] == ',' && (value[i + 1] == ',' || value[i + 1] == '\0'))
-			error("Invalid color format: bad comma placement");
+			error("Invalid color format");
 		i++;
 	}
 }

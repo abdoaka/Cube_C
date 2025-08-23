@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 02:10:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/14 03:00:00 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/14 02:10:24 by zkharbac          #+#    #+#             */
+/*   Updated: 2025/08/14 03:00:00 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	validate_and_setup(t_config *cfg)
 	free(padded);
 }
 
-void	parse_file(const char *file, t_config *cfg)
+void	 parse_file(const char *file, t_config *cfg)
 {
 	int		fd;
 	char	*line;
