@@ -101,4 +101,6 @@ void					draw_textured_wall_strip(t_game *game, t_ray *ray,
 							t_wall_strip_params *params);
 void					draw_ceiling_floor(t_game *game, int x, int wall_top,
 							int wall_bottom);
+size_t	ft_strlen(const char *s);
+
 #endif

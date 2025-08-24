@@ -22,7 +22,7 @@ static void	calculate_map_boundaries(t_game *game, t_horizontal_ray_data *data)
 	i = 0;
 	while (i < game->config->map_height)
 	{
-		width = strlen(game->config->map_lines[i]);
+		width = ft_strlen(game->config->map_lines[i]);
 		if (width > data->max_width)
 			data->max_width = width;
 		i++;

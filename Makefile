@@ -14,7 +14,7 @@ else ifeq ($(UNAME), Darwin)
 endif
 
 # Source files and headers
-SRCS = src/main.c src/game/input.c src/game/init.c src/game/movement.c src/game/camera.c \
+SRCS = src/main.c src/game/input.c src/game/init.c src/game/movement.c \
     	src/utils/math_utils.c
 
 OBJS = ${SRCS:.c=.o}

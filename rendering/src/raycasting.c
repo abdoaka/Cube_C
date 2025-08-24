@@ -26,7 +26,7 @@ int	is_wall(t_game *game, double x, double y)
 	map_y = (int)(y / tile_size);
 	if (map_y < 0 || map_y >= game->config->map_height)
 		return (1);
-	if (map_x < 0 || map_x >= (int)strlen(game->config->map_lines[map_y]))
+	if (map_x < 0 || map_x >= (int)ft_strlen(game->config->map_lines[map_y]))
 		return (1);
 	return (game->config->map_lines[map_y][map_x] == '1');
 }
