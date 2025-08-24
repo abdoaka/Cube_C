@@ -6,7 +6,7 @@
 /*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 19:17:53 by absaadan          #+#    #+#             */
-/*   Updated: 2025/08/24 10:32:47 by zkharbac         ###   ########.fr       */
+/*   Updated: 2025/08/24 10:53:40 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,10 @@ int	start_game(t_config *config)
 	return (1);
 }
 
-void system_leaks(void)
-{
-	system("leaks -q cub3D");
-}
 int	main(int ac, char **av)
 {
-	atexit(system_leaks);
 	t_config	cfg;
+	
 	if (ac != 2)
 	{
 		ft_putendl_fd("Usage: ./cub3d filename.cub", 2);
