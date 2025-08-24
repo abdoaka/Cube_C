@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zkharbac <zkharbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 02:10:24 by marvin            #+#    #+#             */
-/*   Updated: 2025/08/14 03:00:00 by marvin           ###   ########.fr       */
+/*   Created: 2025/08/14 02:10:24 by zkharbac          #+#    #+#             */
+/*   Updated: 2025/08/14 03:00:00 by zkharbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ static void	validate_and_setup(t_config *cfg)
 		error("Missing texture paths");
 	if (cfg->floor_color == -1 || cfg->ceiling_color == -1)
 		error("Missing floor or ceiling color");
-	if (cfg->floor_color == cfg->ceiling_color)
-		error("Floor and ceiling colors must be different");
 	validate_map_characters(cfg);
 	padded = pad_map(cfg->map_lines, cfg->map_height, &width);
 	check_closed_map(padded, cfg->map_height, width);
