@@ -47,7 +47,7 @@ int	start_game(t_config *config)
 int	main(int ac, char **av)
 {
 	t_config	cfg;
-	
+
 	if (ac != 2)
 	{
 		ft_putendl_fd("Usage: ./cub3d filename.cub", 2);
@@ -55,8 +55,8 @@ int	main(int ac, char **av)
 	}
 	init_config(&cfg);
 	parse_file(av[1], &cfg);
-	printf("Parsing successful! Player at (%.1f, %.1f)\n",
-		cfg.player_x, cfg.player_y);
+	printf("Parsing successful! Player at (%.1f, %.1f)\n", cfg.player_x,
+		cfg.player_y);
 	printf("Parsed ceiling color: 0x%06X\n", cfg.ceiling_color);
 	printf("Parsed floor color: 0x%06X\n", cfg.floor_color);
 	if (!start_game(&cfg))
