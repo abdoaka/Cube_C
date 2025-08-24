@@ -52,7 +52,9 @@ void	set_texture(char **target, char *value, char *err_msg)
 {
 	if (*target)
 		error(err_msg);
-	*target = value;
+	*target = ft_strdup(value);
+	if (!*target)
+		error("Memory allocation failed");
 }
 
 void	check_commas(char *value)

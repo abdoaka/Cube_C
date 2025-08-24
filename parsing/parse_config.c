@@ -52,10 +52,7 @@ static void	parse_texture(char *key, char *value, t_config *cfg)
 	else if (!ft_strncmp(key, "EA", 3))
 		set_texture(&cfg->texture_ea, value, "Duplicate EA texture");
 	else
-	{
-		free(value);
 		error("Unknown texture key");
-	}
 }
 
 static void	parse_floor_ceiling(char *key, char *value, t_config *cfg)
@@ -82,15 +79,21 @@ static void	parse_floor_ceiling(char *key, char *value, t_config *cfg)
 void	parse_config_line(char *line, t_config *cfg)
 {
 	char	**parts;
+	char	*trimmed_line;
 	char	*value;
 
-	parts = ft_split(str_trim(line), ' ');
+	trimmed_line = str_trim(line);
+	parts = ft_split(trimmed_line, ' ');
+	free(trimmed_line);
 	if (!parts || !parts[0] || !parts[1] || parts[2])
 		error("Invalid config line");
 	value = str_trim(parts[1]);
 	if (!ft_strncmp(parts[0], "NO", 3) || !ft_strncmp(parts[0], "SO", 3)
 		|| !ft_strncmp(parts[0], "WE", 3) || !ft_strncmp(parts[0], "EA", 3))
+	{
 		parse_texture(parts[0], value, cfg);
+		free(value);
+	}
 	else if (!ft_strncmp(parts[0], "F", 2) || !ft_strncmp(parts[0], "C", 2))
 	{
 		parse_floor_ceiling(parts[0], value, cfg);

@@ -26,6 +26,18 @@ PARSING_LIB = parsing/libparsing.a
 RENDERING_LIB = rendering/librendering.a
 TEXTURES_LIB = textures/libtextures.a
 
+# Source files for dependencies
+PARSING_SRCS = parsing/parse_config.c parsing/parse_file.c parsing/utils2.c \
+               parsing/utils1.c parsing/utils4.c parsing/player_utils.c \
+               parsing/map.c parsing/utils3.c parsing/helpers.c parsing/map_utils.c
+
+RENDERING_SRCS = rendering/src/cast_horizontal_ray.c rendering/src/render_3d.c \
+                 rendering/src/cast_vertical_ray.c rendering/src/render.c \
+                 rendering/src/draw.c rendering/src/raycasting.c
+
+TEXTURES_SRCS = textures/src/textures_utils.c textures/src/texture_mapper.c \
+                textures/src/textures_loader.c
+
 # Main rule
 all: $(NAME)
 
@@ -38,14 +50,14 @@ $(NAME): $(OBJS) $(MLX_LIB) $(PARSING_LIB) $(RENDERING_LIB) $(TEXTURES_LIB)
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Build libraries - no file dependencies, just force rebuild when called
-$(PARSING_LIB):
+# Build libraries with proper dependencies
+$(PARSING_LIB): $(PARSING_SRCS)
 	make -C parsing
 
-$(RENDERING_LIB):
+$(RENDERING_LIB): $(RENDERING_SRCS)
 	make -C rendering
 
-$(TEXTURES_LIB):
+$(TEXTURES_LIB): $(TEXTURES_SRCS)
 	make -C textures
 
 # Build MLX42 only if not exists
